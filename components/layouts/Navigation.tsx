@@ -21,7 +21,7 @@ export default function Navigation() {
   const navigationRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
-  const links = [
+  const primaryLinks = [
     { href: PATH_HOME, label: "Home", active: pathname === PATH_HOME },
     { href: PATH_ABOUT, label: "Experiences", active: pathname === PATH_ABOUT },
     {
@@ -29,6 +29,8 @@ export default function Navigation() {
       label: "Projects",
       active: pathname === PATH_PROJECTS || pathname.startsWith(`${PATH_PROJECTS}/`),
     },
+  ];
+  const moreLinks = [
     { href: PATH_WRITING, label: "Writing", active: pathname.includes(PATH_WRITING) },
     { href: PATH_DSP, label: "DSP!", active: pathname === PATH_DSP },
   ];
@@ -66,41 +68,54 @@ export default function Navigation() {
 
   return (
     <nav ref={navigationRef} className={styles.navigation} aria-label="Main navigation">
-      <Button
-        ref={toggleRef}
-        type="button"
-        variant="ghost"
-        size="icon"
-        className={styles.menuToggle}
-        aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-        aria-expanded={menuOpen}
-        aria-controls={menuId}
-        onClick={() => setMenuOpen((open) => !open)}
-      >
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          aria-hidden="true"
-        >
-          <path d={menuOpen ? "M6 6l12 12M6 18L18 6" : "M4 6h16M4 12h16M4 18h16"} />
-        </svg>
-      </Button>
+      <div className={styles.primaryLinks}>
+        {primaryLinks.map(({ href, label, active }) => (
+          <div key={href} className={styles.primaryItem}>
+            <NavButton href={href} active={active} onClick={closeMenu}>
+              {label}
+            </NavButton>
+            {href === PATH_PROJECTS && (
+              <Button
+                ref={toggleRef}
+                type="button"
+                variant="ghost"
+                size="icon"
+                className={styles.moreToggle}
+                aria-label={menuOpen ? "Hide more navigation" : "Show more navigation"}
+                aria-expanded={menuOpen}
+                aria-controls={menuId}
+                data-active={moreLinks.some((link) => link.active)}
+                onClick={() => setMenuOpen((open) => !open)}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </Button>
+            )}
+          </div>
+        ))}
+      </div>
       <div
         id={menuId}
-        className={styles.links}
+        className={styles.moreLinks}
         data-open={menuOpen}
       >
-        {links.map(({ href, label, active }) => (
+        {moreLinks.map(({ href, label, active }) => (
           <NavButton key={href} href={href} active={active} onClick={closeMenu}>
             {label}
           </NavButton>
         ))}
-      </div>
-      <div className={styles.themeToggle}>
-        <ThemeToggle />
+        <div className={styles.themeToggle}>
+          <ThemeToggle />
+        </div>
       </div>
     </nav>
   );

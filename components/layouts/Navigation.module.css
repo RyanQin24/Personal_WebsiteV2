@@ -1,44 +1,72 @@
 .navigation {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 44px;
-  align-items: center;
-  column-gap: 12px;
+  position: relative;
   margin: 24px 0 32px;
 }
 
-.menuToggle {
-  grid-column: 1;
-  grid-row: 1;
-  justify-self: start;
+.primaryLinks {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px;
+}
+
+.primaryItem {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.primaryItem > a {
+  min-width: 44px;
+  min-height: 44px;
+  height: auto;
+  padding-inline: 4px;
+}
+
+.moreToggle {
+  flex-shrink: 0;
   width: 44px;
   height: 44px;
   cursor: pointer;
+  color: hsl(var(--muted-foreground));
 }
 
-.menuToggle svg {
-  width: 24px;
-  height: 24px;
+.moreToggle[data-active="true"],
+.moreToggle[aria-expanded="true"] {
+  color: hsl(var(--foreground));
 }
 
-.links {
+.moreToggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+.moreToggle[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+.moreLinks {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 20;
   display: none;
-  grid-column: 1 / -1;
-  grid-row: 2;
-  min-width: 0;
+  min-width: 160px;
+  max-width: 100%;
   flex-direction: column;
   gap: 4px;
-  margin-top: 12px;
   padding: 8px;
   border: 1px solid hsl(var(--border));
   border-radius: 8px;
   background: hsl(var(--background));
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.15);
 }
 
-.links[data-open="true"] {
+.moreLinks[data-open="true"] {
   display: flex;
 }
 
-.links > a {
+.moreLinks > a {
   min-width: 0;
   min-height: 44px;
   height: auto;
@@ -48,10 +76,10 @@
 
 .themeToggle {
   display: flex;
-  grid-column: 2;
-  grid-row: 1;
   justify-content: flex-end;
-  justify-self: end;
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid hsl(var(--border));
 }
 
 .themeToggle > button {
@@ -63,32 +91,51 @@
 @media (min-width: 640px) {
   .navigation {
     display: flex;
+    align-items: center;
     gap: 8px;
     margin: 40px -8px;
   }
 
-  .menuToggle {
+  .primaryLinks {
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .primaryItem > a {
+    min-height: 36px;
+    padding-inline: 8px;
+  }
+
+  .moreToggle {
     display: none;
   }
 
-  .links {
+  .moreLinks {
+    position: static;
     display: flex;
+    flex: 1;
+    min-width: 0;
+    max-width: none;
     flex-direction: row;
     align-items: center;
     gap: 8px;
-    margin: 0;
     padding: 0;
     border: 0;
+    border-radius: 0;
     background: transparent;
+    box-shadow: none;
   }
 
-  .links > a {
+  .moreLinks > a {
     min-height: 36px;
     padding-inline: 8px;
   }
 
   .themeToggle {
+    margin-top: 0;
     margin-left: auto;
+    padding: 0;
+    border: 0;
   }
 
   .themeToggle > button {
