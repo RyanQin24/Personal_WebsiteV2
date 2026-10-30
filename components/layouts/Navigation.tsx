@@ -10,12 +10,13 @@ import {
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "../atoms/ThemeToggle";
 import NavButton from "../common/links/NavButton";
+import styles from "./Navigation.module.css";
 
 export default function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex flex-wrap items-center gap-2 -mx-2 my-10">
+    <nav className={styles.navigation} aria-label="Main navigation">
       <NavButton
         href={PATH_HOME}
         active={pathname === PATH_HOME}
@@ -51,8 +52,9 @@ export default function Navigation() {
       >
         DSP!
       </NavButton>
-      <div className="flex-1" />
-      <ThemeToggle />
+      <div className={styles.themeToggle}>
+        <ThemeToggle />
+      </div>
     </nav>
   );
 }

@@ -1,0 +1,54 @@
+.navigation {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 8px;
+  margin: 24px 0 32px;
+}
+
+.navigation > a {
+  min-width: 0;
+  min-height: 44px;
+  height: auto;
+  justify-content: flex-start;
+  padding-inline: 8px;
+}
+
+.themeToggle {
+  display: flex;
+  justify-content: flex-end;
+  justify-self: end;
+}
+
+.themeToggle > button {
+  width: 44px;
+  height: 44px;
+}
+
+/* Two tidy rows on phones, with extra room for the longer Experiences label. */
+@media (min-width: 360px) {
+  .navigation {
+    grid-template-columns: max-content minmax(0, 1fr) max-content;
+  }
+}
+
+/* Match the site's desktop breakpoint and keep the theme switch at the right. */
+@media (min-width: 640px) {
+  .navigation {
+    display: flex;
+    margin: 40px -8px;
+  }
+
+  .navigation > a {
+    min-height: 36px;
+  }
+
+  .themeToggle {
+    margin-left: auto;
+  }
+
+  .themeToggle > button {
+    width: 36px;
+    height: 36px;
+  }
+}
