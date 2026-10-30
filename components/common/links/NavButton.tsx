@@ -8,12 +8,14 @@ export default function NavButton({
   active = false,
   external = false,
   className,
+  onClick,
 }: Readonly<{
   children: React.ReactNode;
   href: string;
   active?: boolean;
   external?: boolean;
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }>) {
   return (
     <Button
@@ -24,10 +26,11 @@ export default function NavButton({
         className
       )}
       variant="link"
-      role="navigation"
     >
       <Link
         href={href}
+        onClick={onClick}
+        aria-current={active ? "page" : undefined}
         {...(external ? { rel: "noopener noreferrer", target: "_blank" } : {})}
       >
         {children}

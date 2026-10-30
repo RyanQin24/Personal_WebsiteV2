@@ -1,21 +1,55 @@
 .navigation {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr) 44px;
   align-items: center;
-  gap: 8px;
+  column-gap: 12px;
   margin: 24px 0 32px;
 }
 
-.navigation > a {
+.menuToggle {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+}
+
+.menuToggle svg {
+  width: 24px;
+  height: 24px;
+}
+
+.links {
+  display: none;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 12px;
+  padding: 8px;
+  border: 1px solid hsl(var(--border));
+  border-radius: 8px;
+  background: hsl(var(--background));
+}
+
+.links[data-open="true"] {
+  display: flex;
+}
+
+.links > a {
   min-width: 0;
   min-height: 44px;
   height: auto;
   justify-content: flex-start;
-  padding-inline: 8px;
+  padding-inline: 12px;
 }
 
 .themeToggle {
   display: flex;
+  grid-column: 2;
+  grid-row: 1;
   justify-content: flex-end;
   justify-self: end;
 }
@@ -25,22 +59,32 @@
   height: 44px;
 }
 
-/* Two tidy rows on phones, with extra room for the longer Experiences label. */
-@media (min-width: 360px) {
-  .navigation {
-    grid-template-columns: max-content minmax(0, 1fr) max-content;
-  }
-}
-
 /* Match the site's desktop breakpoint and keep the theme switch at the right. */
 @media (min-width: 640px) {
   .navigation {
     display: flex;
+    gap: 8px;
     margin: 40px -8px;
   }
 
-  .navigation > a {
+  .menuToggle {
+    display: none;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .links > a {
     min-height: 36px;
+    padding-inline: 8px;
   }
 
   .themeToggle {
