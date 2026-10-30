@@ -113,9 +113,9 @@ export default function Navigation() {
             {label}
           </NavButton>
         ))}
-        <div className={styles.themeToggle}>
-          <ThemeToggle />
-        </div>
+      </div>
+      <div className={styles.themeToggle}>
+        <ThemeToggle />
       </div>
     </nav>
   );

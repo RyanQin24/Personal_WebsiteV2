@@ -1,5 +1,8 @@
 .navigation {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   margin: 24px 0 32px;
 }
 
@@ -47,7 +50,7 @@
 
 .moreLinks {
   position: absolute;
-  top: calc(100% + 8px);
+  top: 52px;
   right: 0;
   z-index: 20;
   display: none;
@@ -76,10 +79,8 @@
 
 .themeToggle {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 4px;
-  padding-top: 4px;
-  border-top: 1px solid hsl(var(--border));
+  justify-content: flex-start;
+  align-self: flex-start;
 }
 
 .themeToggle > button {
@@ -90,7 +91,7 @@
 /* Match the site's desktop breakpoint and keep the theme switch at the right. */
 @media (min-width: 640px) {
   .navigation {
-    display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 8px;
     margin: 40px -8px;
@@ -132,10 +133,8 @@
   }
 
   .themeToggle {
-    margin-top: 0;
+    align-self: center;
     margin-left: auto;
-    padding: 0;
-    border: 0;
   }
 
   .themeToggle > button {
