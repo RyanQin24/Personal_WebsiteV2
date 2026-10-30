@@ -1,0 +1,143 @@
+.readmePage {
+  /* Article layout and typography controls. */
+  --readme-max-width: 900px;
+  --readme-body-size: 15px;
+  --readme-code-size: 13px;
+  --readme-image-radius: 6px;
+
+  width: 100%;
+  max-width: var(--readme-max-width);
+  min-width: 0;
+  margin-inline: auto;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 1.75rem;
+  color: hsl(var(--muted-foreground));
+  font-size: 14px;
+}
+
+.backLink:hover {
+  color: hsl(var(--foreground));
+  text-decoration: underline;
+}
+
+.markdown {
+  min-width: 0;
+  color: hsl(var(--foreground));
+  font-size: var(--readme-body-size);
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+.markdown > :first-child {
+  margin-top: 0;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  margin: 1.5em 0 0.7em;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+}
+
+.markdown h1 { font-size: clamp(24px, 4vw, 32px); }
+.markdown h2 { font-size: 24px; }
+.markdown h3 { font-size: 20px; }
+.markdown h4 { font-size: 17px; }
+
+.markdown p {
+  margin: 0 0 1em;
+}
+
+.markdown img,
+.markdown video {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+  border-radius: var(--readme-image-radius);
+}
+
+.markdown pre {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border: 1px solid hsl(var(--border));
+  border-radius: 8px;
+  background: hsl(var(--muted));
+  font-size: var(--readme-code-size);
+  line-height: 1.6;
+  white-space: pre;
+}
+
+.markdown code {
+  padding: 0.15em 0.3em;
+  border-radius: 3px;
+  background: hsl(var(--muted));
+  font-family: var(--font-sans), Consolas, monospace;
+  font-size: 0.9em;
+}
+
+.markdown pre code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: inherit;
+  white-space: inherit;
+  overflow-wrap: normal;
+}
+
+.markdown ul,
+.markdown ol {
+  margin: 1em 0;
+  padding-inline-start: 1.5rem;
+}
+
+.markdown ul { list-style: disc; }
+.markdown ol { list-style: decimal; }
+.markdown li + li { margin-top: 0.4em; }
+
+.markdown a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.markdown blockquote {
+  margin: 1.5rem 0;
+  padding-inline-start: 1rem;
+  border-inline-start: 3px solid hsl(var(--border));
+  color: hsl(var(--muted-foreground));
+}
+
+.markdown table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+}
+
+.markdown th,
+.markdown td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid hsl(var(--border));
+}
+
+.markdown hr {
+  margin-block: 2rem;
+  border-color: hsl(var(--border));
+}
+
+@media (max-width: 639px) {
+  .markdown pre {
+    padding: 0.75rem;
+  }
+}

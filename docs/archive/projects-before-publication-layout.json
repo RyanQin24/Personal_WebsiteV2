@@ -1,0 +1,658 @@
+{
+  "note": "Previous project data retained for restoring entries or wording. This archive is not rendered by the website.",
+  "projects": [
+    {
+      "slug": "TakeOne",
+      "title": "TakeOne",
+      "subtitle": "Finalist - Hack The North 2026",
+      "links": [
+        {
+          "label": "DevPost",
+          "href": "https://devpost.com/software/takeone-erqv3l"
+        },
+        {
+          "label": "GitHub",
+          "href": "https://github.com/RyanQin24/TakeOne"
+        }
+      ],
+      "summary": "An AI-powered robotic film studio designed to turn a shot idea into real-world camera movement.",
+      "image": {
+        "src": "/images/projects/TakeOne_Proj.png",
+        "alt": "Image of the TakeOne Robot."
+      },
+      "technologies": [
+        "CAN Bus",
+        "ESP32",
+        "Python",
+        "MuJoCo",
+        "React"
+      ],
+      "sections": [
+        {
+          "title": "Sound, made visible",
+          "paragraphs": [
+            "The DSP lab turns audio playback into an interactive signal display. Two analog-style VU meters show the left and right channels, while a VFD-style spectrum analyzer reveals the frequencies in the output.",
+            "Choose one of the website's default tracks or load a mono or stereo WAV from your device. Press Play to hear the track and see the analysis in real time."
+          ]
+        },
+        {
+          "title": "Inside the signal path",
+          "bullets": [
+            "The Web Audio API handles decoding, playback, channel separation, and analysis.",
+            "Channel RMS levels drive the VU needles. An adjustable RC time constant controls their exponential response.",
+            "An 8192-point FFT feeds a logarithmic frequency display drawn on a high-resolution canvas.",
+            "The default music library reads the WAV files bundled in the website's public/music folder."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "Verilog AI processor",
+      "title": "Verilog AI processor",
+      "subtitle": "Ongoing project",
+      "links": [],
+      "summary": "Upgrade from my Breadboard CPU!!! Instead of a 4-bit system, the pocessor is aimed to to have 64-bit RISCV 5-stage CPU with a cusom TPU for carrying matrix computations.",
+      "image": {
+        "src": "/images/projects/AIProcessor_Proj.png",
+        "alt": "Illustration of Cate's green BIOS terminal with a red security notice and a command prompt."
+      },
+      "technologies": [
+        "FPGA",
+        "Verilog",
+        "SystemVerilog"
+      ],
+      "sections": [
+        {
+          "title": "A story told through a terminal",
+          "paragraphs": [
+            "Cate's Terminal presents the Leo & Cate story as a fictional computer startup sequence, from hardware checks and memory mapping to CateOS and the security system notice.",
+            "Visitors can type at the prompt. Every submitted command receives an in-world error: Leo's connection has reserved the TTY. The terminal also carries his message that the story is still in progress."
+          ]
+        },
+        {
+          "title": "How it is built",
+          "bullets": [
+            "The BIOS text and story metadata live in Markdown, keeping the writing separate from the interface.",
+            "A React command prompt keeps a local command history and returns scripted responses.",
+            "Green terminal output and a red security notice create the console theme.",
+            "A labelled input, keyboard submission, and an accessible response log support interaction."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "Breadboard CPU",
+      "title": "Breadboard CPU",
+      "subtitle": "Personal project",
+      "links": [
+        {
+          "label": "Github",
+          "href": "https://github.com/RyanQin24/Breadboard-CPU"
+        },
+        {
+          "label": "Youtube",
+          "href": "https://www.youtube.com/watch?v=tHEkYlJnZf8"
+        }
+      ],
+      "summary": "Taking apart a CPU die for behavior analysis is practically impossible! Thus I built a 4-bit CPU including Jump instruction from discrete logic gates to better understand the inner workings of a CPU.",
+      "image": {
+        "src": "/images/projects/BBCPU_Proj.jpg",
+        "alt": "Illustration of Cate's green BIOS terminal with a red security notice and a command prompt."
+      },
+      "technologies": [
+        "NMOS/PMOS"
+      ],
+      "sections": [
+        {
+          "title": "A story told through a terminal",
+          "paragraphs": [
+            "Cate's Terminal presents the Leo & Cate story as a fictional computer startup sequence, from hardware checks and memory mapping to CateOS and the security system notice.",
+            "Visitors can type at the prompt. Every submitted command receives an in-world error: Leo's connection has reserved the TTY. The terminal also carries his message that the story is still in progress."
+          ]
+        },
+        {
+          "title": "How it is built",
+          "bullets": [
+            "The BIOS text and story metadata live in Markdown, keeping the writing separate from the interface.",
+            "A React command prompt keeps a local command history and returns scripted responses.",
+            "Green terminal output and a red security notice create the console theme.",
+            "A labelled input, keyboard submission, and an accessible response log support interaction."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "Retro Adder",
+      "title": "Retro Adder",
+      "subtitle": "Personal project",
+      "links": [
+        {
+          "label": "Github",
+          "href": "https://github.com/RyanQin24/Retro-Adder"
+        }
+      ],
+      "summary": "Experiment to dive into the electronics behind historic and mondern computing beyond the logic gate level! Goal is to create Full Adder from Transistors and Relay Level.",
+      "image": {
+        "src": "/images/projects/RetroAdder_Proj.jpg",
+        "alt": "Illustration of Cate's green BIOS terminal with a red security notice and a command prompt."
+      },
+      "technologies": [
+        "DPDT Relays",
+        "BJTs",
+        "MOSFETs",
+        "LTSpice"
+      ],
+      "sections": [
+        {
+          "title": "A story told through a terminal",
+          "paragraphs": [
+            "Cate's Terminal presents the Leo & Cate story as a fictional computer startup sequence, from hardware checks and memory mapping to CateOS and the security system notice.",
+            "Visitors can type at the prompt. Every submitted command receives an in-world error: Leo's connection has reserved the TTY. The terminal also carries his message that the story is still in progress."
+          ]
+        },
+        {
+          "title": "How it is built",
+          "bullets": [
+            "The BIOS text and story metadata live in Markdown, keeping the writing separate from the interface.",
+            "A React command prompt keeps a local command history and returns scripted responses.",
+            "Green terminal output and a red security notice create the console theme.",
+            "A labelled input, keyboard submission, and an accessible response log support interaction."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "FPGA Clock",
+      "title": "FPGA Clock",
+      "subtitle": "Personal project",
+      "links": [
+        {
+          "label": "Github",
+          "href": "https://github.com/RyanQin24/FPGA-Clock"
+        }
+      ],
+      "summary": "An 24-hour time format clock on FPGA capable of rendering digital clock using VGA interface!",
+      "image": {
+        "src": "/images/projects/VGAClock_Proj.jpg",
+        "alt": "Illustration of Cate's green BIOS terminal with a red security notice and a command prompt."
+      },
+      "technologies": [
+        "FPGA",
+        "Verilog",
+        "Vivado"
+      ],
+      "sections": [
+        {
+          "title": "A story told through a terminal",
+          "paragraphs": [
+            "Cate's Terminal presents the Leo & Cate story as a fictional computer startup sequence, from hardware checks and memory mapping to CateOS and the security system notice.",
+            "Visitors can type at the prompt. Every submitted command receives an in-world error: Leo's connection has reserved the TTY. The terminal also carries his message that the story is still in progress."
+          ]
+        },
+        {
+          "title": "How it is built",
+          "bullets": [
+            "The BIOS text and story metadata live in Markdown, keeping the writing separate from the interface.",
+            "A React command prompt keeps a local command history and returns scripted responses.",
+            "Green terminal output and a red security notice create the console theme.",
+            "A labelled input, keyboard submission, and an accessible response log support interaction."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "AutoDump",
+      "title": "AutoDump",
+      "subtitle": "MakeCU Hackathon - 3rd Place Overall",
+      "links": [
+        {
+          "label": "DevPost",
+          "href": "https://devpost.com/software/autodump-autonomous-self-emptying-trash-rover"
+        },
+        {
+          "label": "Github",
+          "href": "https://github.com/RyanQin24/MakeCU"
+        }
+      ],
+      "summary": "An autonomous self-emptying trash rover that uses openCV computer vision to find a trash can and ArUCO marker to relocate back to you. OpenCV algorithm is handled by a raspberry pi while the Arduinos handle remote I/Os.",
+      "image": {
+        "src": "/images/projects/MakeCU_Proj.jpg",
+        "alt": "Illustration of Cate's green BIOS terminal with a red security notice and a command prompt."
+      },
+      "technologies": [
+        "Arduino",
+        "Raspberry Pi",
+        "OpenCV",
+        "Python",
+        "C++",
+        "UART"
+      ],
+      "sections": [
+        {
+          "title": "A story told through a terminal",
+          "paragraphs": [
+            "Cate's Terminal presents the Leo & Cate story as a fictional computer startup sequence, from hardware checks and memory mapping to CateOS and the security system notice.",
+            "Visitors can type at the prompt. Every submitted command receives an in-world error: Leo's connection has reserved the TTY. The terminal also carries his message that the story is still in progress."
+          ]
+        },
+        {
+          "title": "How it is built",
+          "bullets": [
+            "The BIOS text and story metadata live in Markdown, keeping the writing separate from the interface.",
+            "A React command prompt keeps a local command history and returns scripted responses.",
+            "Green terminal output and a red security notice create the console theme.",
+            "A labelled input, keyboard submission, and an accessible response log support interaction."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "Competition RC",
+      "title": "Competition RC",
+      "subtitle": "Formula Null Hackathon - top qualified finalist",
+      "links": [
+        {
+          "label": "Github",
+          "href": "https://github.com/RyanQin24/FormulaNULL-MotorDrivers?tab=readme-ov-file"
+        }
+      ],
+      "summary": "A RC-car that utilizes airsoft motors with custom Mosfet and relay H-bridge to achieve a fast-lap record of 17 second out of the 25 second average.",
+      "image": {
+        "src": "/images/projects/Fnull_Proj.jpg",
+        "alt": "Illustration of Cate's green BIOS terminal with a red security notice and a command prompt."
+      },
+      "technologies": [
+        "Arduino",
+        "MOSFETs",
+        "C++"
+      ],
+      "sections": [
+        {
+          "title": "A story told through a terminal",
+          "paragraphs": [
+            "Cate's Terminal presents the Leo & Cate story as a fictional computer startup sequence, from hardware checks and memory mapping to CateOS and the security system notice.",
+            "Visitors can type at the prompt. Every submitted command receives an in-world error: Leo's connection has reserved the TTY. The terminal also carries his message that the story is still in progress."
+          ]
+        },
+        {
+          "title": "How it is built",
+          "bullets": [
+            "The BIOS text and story metadata live in Markdown, keeping the writing separate from the interface.",
+            "A React command prompt keeps a local command history and returns scripted responses.",
+            "Green terminal output and a red security notice create the console theme.",
+            "A labelled input, keyboard submission, and an accessible response log support interaction."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "PC Starter",
+      "title": "PC Starter",
+      "subtitle": "Personal Project",
+      "links": [
+        {
+          "label": "Github",
+          "href": "https://github.com/RyanQin24/PC-Starter"
+        }
+      ],
+      "summary": "Why let old Servers sit in e-waste just because it does not support Wake-On-Lan(WOL)? This circuit repurposes smart plugs as a power button press simulator!",
+      "image": {
+        "src": "/images/projects/PCStart_Proj.jpg",
+        "alt": "Illustration of Cate's green BIOS terminal with a red security notice and a command prompt."
+      },
+      "technologies": [
+        "555 Timer IC",
+        "Optoisolation"
+      ],
+      "sections": [
+        {
+          "title": "A story told through a terminal",
+          "paragraphs": [
+            "Cate's Terminal presents the Leo & Cate story as a fictional computer startup sequence, from hardware checks and memory mapping to CateOS and the security system notice.",
+            "Visitors can type at the prompt. Every submitted command receives an in-world error: Leo's connection has reserved the TTY. The terminal also carries his message that the story is still in progress."
+          ]
+        },
+        {
+          "title": "How it is built",
+          "bullets": [
+            "The BIOS text and story metadata live in Markdown, keeping the writing separate from the interface.",
+            "A React command prompt keeps a local command history and returns scripted responses.",
+            "Green terminal output and a red security notice create the console theme.",
+            "A labelled input, keyboard submission, and an accessible response log support interaction."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "Hello Assembly",
+      "title": "Hello Assembly",
+      "subtitle": "Personal Project",
+      "links": [
+        {
+          "label": "Github",
+          "href": "https://github.com/RyanQin24/AVR-Hello-World-Assembly"
+        }
+      ],
+      "summary": "Challenging version of Hello World! Code is written in assembly and debugging required reading register bits and waveform instead of calling print function.",
+      "image": {
+        "src": "/images/projects/HelloAssembly_Proj.jpg",
+        "alt": "Illustration of Cate's green BIOS terminal with a red security notice and a command prompt."
+      },
+      "technologies": [
+        "Arduino",
+        "AVR Assembly"
+      ],
+      "sections": [
+        {
+          "title": "A story told through a terminal",
+          "paragraphs": [
+            "Cate's Terminal presents the Leo & Cate story as a fictional computer startup sequence, from hardware checks and memory mapping to CateOS and the security system notice.",
+            "Visitors can type at the prompt. Every submitted command receives an in-world error: Leo's connection has reserved the TTY. The terminal also carries his message that the story is still in progress."
+          ]
+        },
+        {
+          "title": "How it is built",
+          "bullets": [
+            "The BIOS text and story metadata live in Markdown, keeping the writing separate from the interface.",
+            "A React command prompt keeps a local command history and returns scripted responses.",
+            "Green terminal output and a red security notice create the console theme.",
+            "A labelled input, keyboard submission, and an accessible response log support interaction."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "Baymax Bot",
+      "title": "Baymax Bot",
+      "subtitle": "UofTHAcks 12",
+      "links": [
+        {
+          "label": "DoraHacks",
+          "href": "https://dorahacks.io/build/21720/"
+        },
+        {
+          "label": "Github",
+          "href": "https://github.com/RyanQin24/Baymax-UofT-Hacks-12-"
+        }
+      ],
+      "summary": "The mini replica of Big Hero 6's Baymax robot with customized voice response using Applio and ChatGPT. A custom 3D printed and designed power electronics allow baymax to move and inflate.",
+      "image": {
+        "src": "/images/projects/Baymax_Proj.jpg",
+        "alt": "Illustration of Cate's green BIOS terminal with a red security notice and a command prompt."
+      },
+      "technologies": [
+        "Raspberry Pi",
+        "Python",
+        "Applio",
+        "ChatGPT",
+        "Fusion 360"
+      ],
+      "sections": [
+        {
+          "title": "A story told through a terminal",
+          "paragraphs": [
+            "Cate's Terminal presents the Leo & Cate story as a fictional computer startup sequence, from hardware checks and memory mapping to CateOS and the security system notice.",
+            "Visitors can type at the prompt. Every submitted command receives an in-world error: Leo's connection has reserved the TTY. The terminal also carries his message that the story is still in progress."
+          ]
+        },
+        {
+          "title": "How it is built",
+          "bullets": [
+            "The BIOS text and story metadata live in Markdown, keeping the writing separate from the interface.",
+            "A React command prompt keeps a local command history and returns scripted responses.",
+            "Green terminal output and a red security notice create the console theme.",
+            "A labelled input, keyboard submission, and an accessible response log support interaction."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "AI Controlled Electric Trolley",
+      "title": "AI Controlled Electric Trolley",
+      "subtitle": "Personal Project",
+      "links": [
+        {
+          "label": "Github",
+          "href": "https://github.com/RyanQin24/BoiBot_Firmware"
+        },
+        {
+          "label": "Youtube",
+          "href": "https://www.youtube.com/watch?v=sXDfRotP08Y"
+        }
+      ],
+      "summary": "An electric trolley with AI-based object recognition designed for hands-free operation. Power and control electronics are designed using recycled hoverboard and smart plug parts.",
+      "image": {
+        "src": "/images/projects/ETrolley_Proj.PNG",
+        "alt": "Illustration of Cate's green BIOS terminal with a red security notice and a command prompt."
+      },
+      "technologies": [
+        "ESP32",
+        "RC",
+        "Wifi",
+        "UART",
+        "Android Studio"
+      ],
+      "sections": [
+        {
+          "title": "A story told through a terminal",
+          "paragraphs": [
+            "Cate's Terminal presents the Leo & Cate story as a fictional computer startup sequence, from hardware checks and memory mapping to CateOS and the security system notice.",
+            "Visitors can type at the prompt. Every submitted command receives an in-world error: Leo's connection has reserved the TTY. The terminal also carries his message that the story is still in progress."
+          ]
+        },
+        {
+          "title": "How it is built",
+          "bullets": [
+            "The BIOS text and story metadata live in Markdown, keeping the writing separate from the interface.",
+            "A React command prompt keeps a local command history and returns scripted responses.",
+            "Green terminal output and a red security notice create the console theme.",
+            "A labelled input, keyboard submission, and an accessible response log support interaction."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "BioTron",
+      "title": "BioTron",
+      "subtitle": "Jamhacks 8 - Best Hardware Hacks",
+      "links": [
+        {
+          "label": "DoraHacks",
+          "href": "https://dorahacks.io/build/13373/"
+        },
+        {
+          "label": "Github",
+          "href": "https://github.com/RyanQin24/WateringSystem-Software"
+        }
+      ],
+      "summary": "A IP-based modular watering system with AI assistant android app and plug and play sensor and pump modules.",
+      "image": {
+        "src": "/images/projects/BioTron_Proj.jpeg",
+        "alt": "Illustration of Cate's green BIOS terminal with a red security notice and a command prompt."
+      },
+      "technologies": [
+        "TCP/IP",
+        "Python",
+        "Raspberry Pi",
+        "Android Studio"
+      ],
+      "sections": [
+        {
+          "title": "A story told through a terminal",
+          "paragraphs": [
+            "Cate's Terminal presents the Leo & Cate story as a fictional computer startup sequence, from hardware checks and memory mapping to CateOS and the security system notice.",
+            "Visitors can type at the prompt. Every submitted command receives an in-world error: Leo's connection has reserved the TTY. The terminal also carries his message that the story is still in progress."
+          ]
+        },
+        {
+          "title": "How it is built",
+          "bullets": [
+            "The BIOS text and story metadata live in Markdown, keeping the writing separate from the interface.",
+            "A React command prompt keeps a local command history and returns scripted responses.",
+            "Green terminal output and a red security notice create the console theme.",
+            "A labelled input, keyboard submission, and an accessible response log support interaction."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "DC UPS",
+      "title": "DC UPS",
+      "subtitle": "Personal Project",
+      "links": [
+        {
+          "label": "Youtube",
+          "href": "https://www.youtube.com/watch?v=cp19pjRutqc"
+        },
+        {
+          "label": "PCB File",
+          "href": "https://easyeda.com/editor#project_id=de1edf7cb6874814af681af51f2d2c17"
+        }
+      ],
+      "summary": "Intermittent power outage trying to ruin my 3D-Print? Not a chance! I built a 24VDC UPS built with custom PCB to maximize shelf life to 2 years while the DC architecture elimenates DC/AC inverter overhead.",
+      "image": {
+        "src": "/images/projects/DCUPS_Proj.jpg",
+        "alt": "Illustration of Cate's green BIOS terminal with a red security notice and a command prompt."
+      },
+      "technologies": [
+        "Power Electronics",
+        "PCB Design",
+        "Comparator Circuits"
+      ],
+      "sections": [
+        {
+          "title": "A story told through a terminal",
+          "paragraphs": [
+            "Cate's Terminal presents the Leo & Cate story as a fictional computer startup sequence, from hardware checks and memory mapping to CateOS and the security system notice.",
+            "Visitors can type at the prompt. Every submitted command receives an in-world error: Leo's connection has reserved the TTY. The terminal also carries his message that the story is still in progress."
+          ]
+        },
+        {
+          "title": "How it is built",
+          "bullets": [
+            "The BIOS text and story metadata live in Markdown, keeping the writing separate from the interface.",
+            "A React command prompt keeps a local command history and returns scripted responses.",
+            "Green terminal output and a red security notice create the console theme.",
+            "A labelled input, keyboard submission, and an accessible response log support interaction."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "GPU Performance Research",
+      "title": "GPU Performance Research",
+      "subtitle": "York Region Science & Technology Fair (YRSTF)",
+      "links": [
+        {
+          "label": "YRSTF",
+          "href": "https://partner.projectboard.world/ysc/project/gpu-power-and-performance-research"
+        }
+      ],
+      "summary": "A research on optimizing GPU's Power consumption and Performance. Voltage regulator was analyzed for its efficiency with varying power load while GPU was analyzed for how its performance changes with power budget.",
+      "image": {
+        "src": "/images/projects/GPU_Proj.png",
+        "alt": "Illustration of Cate's green BIOS terminal with a red security notice and a command prompt."
+      },
+      "technologies": [
+        "GPU",
+        "Power Electronics",
+        "Desmos"
+      ],
+      "sections": [
+        {
+          "title": "A story told through a terminal",
+          "paragraphs": [
+            "Cate's Terminal presents the Leo & Cate story as a fictional computer startup sequence, from hardware checks and memory mapping to CateOS and the security system notice.",
+            "Visitors can type at the prompt. Every submitted command receives an in-world error: Leo's connection has reserved the TTY. The terminal also carries his message that the story is still in progress."
+          ]
+        },
+        {
+          "title": "How it is built",
+          "bullets": [
+            "The BIOS text and story metadata live in Markdown, keeping the writing separate from the interface.",
+            "A React command prompt keeps a local command history and returns scripted responses.",
+            "Green terminal output and a red security notice create the console theme.",
+            "A labelled input, keyboard submission, and an accessible response log support interaction."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "Sumobot",
+      "title": "Sumobot",
+      "subtitle": "Personal Project",
+      "links": [
+        {
+          "label": "Github",
+          "href": "https://github.com/RyanQin24/Sumobot"
+        }
+      ],
+      "summary": "My first hand exposure to TCP/IP networking and designing Perfboard circuits! A battlebot capable of autonomous driving (using ultrasonic and LDR) and control via web-interface",
+      "image": {
+        "src": "/images/projects/Sumobot_Proj.jpg",
+        "alt": "Illustration of Cate's green BIOS terminal with a red security notice and a command prompt."
+      },
+      "technologies": [
+        "TCP/IP",
+        "Perfboard Design",
+        "Python"
+      ],
+      "sections": [
+        {
+          "title": "A story told through a terminal",
+          "paragraphs": [
+            "Cate's Terminal presents the Leo & Cate story as a fictional computer startup sequence, from hardware checks and memory mapping to CateOS and the security system notice.",
+            "Visitors can type at the prompt. Every submitted command receives an in-world error: Leo's connection has reserved the TTY. The terminal also carries his message that the story is still in progress."
+          ]
+        },
+        {
+          "title": "How it is built",
+          "bullets": [
+            "The BIOS text and story metadata live in Markdown, keeping the writing separate from the interface.",
+            "A React command prompt keeps a local command history and returns scripted responses.",
+            "Green terminal output and a red security notice create the console theme.",
+            "A labelled input, keyboard submission, and an accessible response log support interaction."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "Line Follower",
+      "title": "Line Follower",
+      "subtitle": "Personal Project",
+      "links": [
+        {
+          "label": "Youtube",
+          "href": "https://www.youtube.com/watch?v=zdhy9xBj0OM"
+        }
+      ],
+      "summary": "My first project in pre-teen! It was my first-hand exposure to Arduino microcontroller, power districution system, and embedded systems.",
+      "image": {
+        "src": "/images/projects/LineFollower_Proj.jpg",
+        "alt": "Illustration of Cate's green BIOS terminal with a red security notice and a command prompt."
+      },
+      "technologies": [
+        "Arduino",
+        "C++"
+      ],
+      "sections": [
+        {
+          "title": "A story told through a terminal",
+          "paragraphs": [
+            "Cate's Terminal presents the Leo & Cate story as a fictional computer startup sequence, from hardware checks and memory mapping to CateOS and the security system notice.",
+            "Visitors can type at the prompt. Every submitted command receives an in-world error: Leo's connection has reserved the TTY. The terminal also carries his message that the story is still in progress."
+          ]
+        },
+        {
+          "title": "How it is built",
+          "bullets": [
+            "The BIOS text and story metadata live in Markdown, keeping the writing separate from the interface.",
+            "A React command prompt keeps a local command history and returns scripted responses.",
+            "Green terminal output and a red security notice create the console theme.",
+            "A labelled input, keyboard submission, and an accessible response log support interaction."
+          ]
+        }
+      ]
+    }
+  ]
+}

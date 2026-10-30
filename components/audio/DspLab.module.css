@@ -1,0 +1,487 @@
+.lab {
+  width: 100%;
+  max-width: 68rem;
+  margin: 0 auto;
+}
+
+.intro {
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.65rem;
+  letter-spacing: 0.17em;
+}
+
+.intro h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1.2;
+}
+
+.intro > p:last-child {
+  color: hsl(var(--muted-foreground));
+  line-height: 1.7;
+}
+
+.rack {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid #424745;
+  border-radius: 1rem;
+  background: linear-gradient(130deg, #323736, #1d2221 45%, #252a29);
+  box-shadow: 0 1.5rem 4rem #0002, inset 0 1px 0 #ffffff16;
+  color: #d2d8d3;
+  color-scheme: dark;
+  font-family: var(--font-sans, "Cascadia Code"), Consolas, monospace;
+}
+
+.rackHeading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #ffffff0c;
+}
+
+.rackHeading > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.brand {
+  color: #e1e4dd;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.model {
+  color: #9da79f;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #bdc9be;
+  font-size: 0.65rem;
+}
+
+.idleLed,
+.liveLed {
+  width: 0.4rem;
+  height: 0.4rem;
+  flex: none;
+  border-radius: 50%;
+  background: #5c6960;
+}
+
+.liveLed {
+  background: #a4f3c8;
+  box-shadow: 0 0 0.5rem #a4f3c866;
+}
+
+.meterBay {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: clamp(0.5rem, 3vw, 3rem);
+  padding: 1.75rem clamp(0.75rem, 4vw, 3.5rem) 0;
+  background: radial-gradient(ellipse at 50% 30%, #3c423d80, transparent 75%);
+}
+
+.meter {
+  width: 100%;
+  max-width: 24rem;
+  justify-self: center;
+}
+
+.meterCaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0 clamp(1.25rem, 4vw, 3.5rem) 1.75rem;
+  color: #a1aca3;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+}
+
+.spectrumBay {
+  padding: 0 clamp(0.75rem, 2.5vw, 2rem) 1.75rem;
+}
+
+.transport {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1.5rem 2rem 0;
+  border-top: 1px solid #ffffff10;
+  padding-bottom: 1.5rem;
+  background: #0a100c20;
+}
+
+.library {
+  padding: 1.4rem 2rem 1.25rem;
+  background: #0a100c20;
+}
+
+.libraryLabel {
+  display: block;
+  margin-bottom: 0.7rem;
+  color: #c6d1c4;
+  font-size: 0.65rem;
+  letter-spacing: 0.09em;
+}
+
+.libraryPicker {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.musicSelect {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.75rem;
+  flex: 1;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid #626d63;
+  border-radius: 0.3rem;
+  background: #17221b;
+  color: #e4ece2;
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.musicSelect:disabled {
+  color: #a0afa3;
+  cursor: default;
+}
+
+.refreshButton {
+  min-height: 2.75rem;
+  flex: none;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid #4b554c;
+  border-radius: 0.3rem;
+  background: #272e28;
+  color: #d2dcd0;
+  font: inherit;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.refreshButton:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.refreshButton:not(:disabled):hover {
+  filter: brightness(1.12);
+}
+
+.libraryHelp,
+.libraryError {
+  margin: 0.6rem 0 0;
+  color: #9ba89d;
+  font-size: 0.6rem;
+  line-height: 1.7;
+}
+
+.libraryError {
+  color: #ffc0b5;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.fileButton,
+.playButton,
+.stopButton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.7rem;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid #626d63;
+  border-radius: 0.3rem;
+  background: linear-gradient(#404840, #2c342e);
+  color: #e4ece2;
+  font: inherit;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 2px 3px #0003, inset 0 1px 0 #ffffff10;
+}
+
+.fileButton {
+  position: relative;
+  flex: none;
+}
+
+.fileInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.trackDetails {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.filename {
+  overflow: hidden;
+  color: #d4dbd2;
+  font-size: 0.7rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileMeta {
+  color: #99a49b;
+  font-size: 0.6rem;
+}
+
+.playback {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.playButton {
+  min-width: 6rem;
+  border-color: #8da992;
+  background: linear-gradient(#c3d4b8, #a5b99b);
+  color: #17261b;
+  font-weight: 700;
+}
+
+.stopButton {
+  border-color: #4b554c;
+  background: #272e28;
+}
+
+.playButton:disabled,
+.stopButton:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.fileButton:hover,
+.playButton:not(:disabled):hover,
+.stopButton:not(:disabled):hover {
+  filter: brightness(1.12);
+}
+
+.fileButton:focus-within,
+.playButton:focus-visible,
+.stopButton:focus-visible,
+.musicSelect:focus-visible,
+.refreshButton:focus-visible,
+.control input:focus-visible {
+  outline: 2px solid #b6efd4;
+  outline-offset: 4px;
+}
+
+.clock {
+  min-width: 6.8rem;
+  color: #d3f5e6;
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.clock > span {
+  color: #8e9e94;
+}
+
+.progress {
+  width: 100%;
+  height: 3px;
+  grid-column: 1 / -1;
+  overflow: hidden;
+  border: 0;
+  border-radius: 2px;
+  background: #101b15;
+  accent-color: #93ceaf;
+}
+
+.progress::-webkit-progress-bar {
+  background: #101b15;
+}
+
+.progress::-webkit-progress-value {
+  background: #93ceaf;
+}
+
+.progress::-moz-progress-bar {
+  background: #93ceaf;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3rem;
+  padding: 2rem;
+  background: #0a100c20;
+}
+
+.controlHeading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  color: #c6d1c4;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+}
+
+.controlHeading output {
+  color: #d8f3e1;
+  font-variant-numeric: tabular-nums;
+}
+
+.control input {
+  width: 100%;
+  height: 1.5rem;
+  cursor: pointer;
+  accent-color: #b1c5a3;
+}
+
+.control p {
+  margin: 0.5rem 0 0;
+  color: #9ba89d;
+  font-size: 0.6rem;
+  line-height: 1.7;
+}
+
+.error {
+  margin: 0;
+  padding: 0 2rem 1.5rem;
+  color: #ffc0b5;
+  font-size: 0.75rem;
+  line-height: 1.7;
+}
+
+.rackFooter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1.1rem 2rem;
+  border-top: 1px solid #ffffff0b;
+  color: #9ba59a;
+  font-size: 0.55rem;
+  line-height: 1.6;
+}
+
+.notes {
+  max-width: 75ch;
+  margin: 1.75rem auto 0;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.75rem;
+  line-height: 1.9;
+}
+
+.notes summary {
+  width: fit-content;
+  cursor: pointer;
+  text-decoration: underline dotted;
+  text-underline-offset: 0.3em;
+}
+
+.notes p {
+  margin-top: 1rem;
+}
+
+.notes code {
+  color: hsl(var(--foreground));
+}
+
+@media (max-width: 58rem) {
+  .transport {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .clock {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 36rem) {
+  .rackHeading,
+  .library,
+  .transport,
+  .controls,
+  .rackFooter {
+    padding-inline: 1.1rem;
+  }
+
+  .rackHeading {
+    padding-block: 1.1rem;
+  }
+
+  .meterBay {
+    gap: 0;
+    padding: 1rem 0.3rem 0;
+  }
+
+  .meterCaption {
+    justify-content: center;
+    font-size: 0.5rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .controls {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-block: 1.5rem;
+  }
+
+  .track {
+    gap: 0.7rem;
+  }
+
+  .fileButton,
+  .playButton,
+  .stopButton {
+    min-height: 2.75rem;
+    padding-inline: 0.75rem;
+  }
+
+  .clock {
+    min-width: auto;
+    font-size: 0.65rem;
+  }
+
+  .error {
+    padding-inline: 1.1rem;
+  }
+}

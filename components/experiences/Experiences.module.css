@@ -1,0 +1,190 @@
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/reference-experience/inter-latin-variable.woff2") format("woff2-variations");
+}
+
+.page {
+  /* Experiences typography: edit these settings to change the font or sizes. */
+  --experience-font-family: "Inter Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --experience-heading-size: 14px;
+  --experience-title-size: 14px;
+  --experience-skill-size: 12px;
+  --experience-date-size: 14px;
+  --experience-location-size: 14px;
+
+  /* Skill tags: outer spacing, inner padding, and alignment. */
+  --experience-skills-margin-top: 10px;
+  --experience-skills-offset-x: 4px;
+  --experience-skills-gap-x: 10px;
+  --experience-skills-gap-y: 4px;
+  --experience-skill-padding-x: 6px;
+  --experience-skill-padding-y: 3px;
+  --experience-skill-line-height: 1.25;
+  --experience-skill-radius: 5px;
+
+  width: 100%;
+  padding-top: 1.0rem;
+  font-family: var(--experience-font-family);
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.heading {
+  margin: 0 0 2.75rem;
+  color: hsl(var(--muted-foreground));
+  font-size: var(--experience-heading-size);
+  font-weight: 500;
+  line-height: 1.428571;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: 1.5rem;
+  row-gap: 3rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.entry {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  /* Align the date with the title text, including when a logo makes its line taller. */
+  align-items: first baseline;
+  gap: 1.5rem;
+}
+
+.period {
+  margin: 0;
+  color: hsl(var(--muted-foreground));
+  font-size: var(--experience-date-size);
+  line-height: 1.428571;
+  white-space: nowrap;
+}
+
+.details {
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  color: hsl(var(--foreground));
+  font-size: var(--experience-title-size);
+  font-weight: 500;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.affiliation {
+  display: inline;
+  white-space: nowrap;
+}
+
+.companyLink {
+  position: relative;
+  left: var(--logo-offset-x, 0em);
+  top: var(--logo-offset-y, 0em);
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+  vertical-align: baseline;
+}
+
+.companyLink:hover {
+  opacity: 0.8;
+}
+
+.companyLink:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 4px;
+  border-radius: 0.15rem;
+}
+
+.monochromeLogo,
+.originalLogo {
+  display: inline-block;
+  flex: none;
+  width: var(--logo-width);
+  height: var(--logo-height);
+}
+
+.monochromeLogo {
+  background: currentColor;
+  -webkit-mask-image: var(--logo-image);
+  mask-image: var(--logo-image);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.originalLogo {
+  object-fit: contain;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: var(--experience-skills-gap-x);
+  row-gap: var(--experience-skills-gap-y);
+  max-width: 100%;
+  margin: var(--experience-skills-margin-top) 0 0;
+  /* Align the first label with the title, accounting for the badge's padding. */
+  margin-inline-start: calc(var(--experience-skills-offset-x) - var(--experience-skill-padding-x));
+  padding: 0;
+  list-style: none;
+}
+
+.skill {
+  flex: 0 0 auto;
+  max-width: 100%;
+  margin: 0;
+  padding: var(--experience-skill-padding-y) var(--experience-skill-padding-x);
+  border-radius: var(--experience-skill-radius);
+  background: hsl(var(--muted));
+  color: hsl(var(--foreground));
+  font-size: var(--experience-skill-size);
+  font-weight: 500;
+  line-height: var(--experience-skill-line-height);
+  overflow-wrap: anywhere;
+}
+
+.location {
+  margin: 0.4rem 0 0;
+  color: hsl(var(--muted-foreground));
+  font-size: var(--experience-location-size);
+  line-height: 1.428571;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 639px) {
+  .heading {
+    margin-bottom: 2rem;
+  }
+
+  .list {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 2.5rem;
+  }
+
+  .entry {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 0.55rem;
+  }
+
+  .period {
+    white-space: normal;
+  }
+}
