@@ -1,6 +1,8 @@
 .navigation {
   /* Mobile: one value for screen-edge insets and the gaps between link labels. */
   --mobile-nav-spacing: 28px;
+  /* Separate gap between the Projects link and its dropdown arrow button. */
+  --mobile-project-arrow-gap: 14px;
   position: relative;
   display: flex;
   align-items: center;
@@ -22,6 +24,7 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  gap: var(--mobile-project-arrow-gap);
 }
 
 .primaryItem > a {
@@ -29,8 +32,8 @@
   min-height: 44px;
   height: auto;
   padding-inline: 0;
-  /* Fit fixed gaps on narrow phones, growing to the usual 14px by 360px wide. */
-  font-size: clamp(0.6875rem, calc(7.5vw - 13px), 0.875rem);
+  /* Fit both fixed gaps on narrow phones, reaching the usual 14px by 375px. */
+  font-size: clamp(0.625rem, calc(7.5vw - 14px), 0.875rem);
 }
 
 .moreToggle {
