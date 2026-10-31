@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { amplitudeToDb, rcStep, rmsAndPeak, spectrumBands } from "./audioMath";
+import { claimPlaybackSession, decodeWavAudio, resumeForPlayback } from "./audioCompatibility";
 
 const FFT_SIZE = 8192;
 const VU_WINDOW = 2048;
@@ -19,7 +20,7 @@ type AudioGraph = {
   samples: [Float32Array<ArrayBuffer>, Float32Array<ArrayBuffer>];
   frequencies: [Float32Array<ArrayBuffer>, Float32Array<ArrayBuffer>];
 };
-type Voice = { source: AudioBufferSourceNode; gate: GainNode };
+type Voice = { source: AudioBufferSourceNode; gate: GainNode; releaseSession: () => void };
 
 export type WavInfo = {
   name: string;
@@ -97,8 +98,16 @@ export default function useWavAudio() {
     voiceRef.current = null;
     playingRef.current = false;
     if (!voice) return;
+    voice.releaseSession();
 
     const context = graphRef.current?.context;
+    if (!context || context.state !== "running") {
+      voice.source.onended = null;
+      try { voice.source.stop(); } catch { /* Already stopped. */ }
+      voice.source.disconnect();
+      voice.gate.disconnect();
+      return;
+    }
     const now = context?.currentTime ?? 0;
     voice.source.onended = () => {
       voice.source.disconnect();
@@ -154,11 +163,9 @@ export default function useWavAudio() {
         throw new Error("This file is not a valid WAV file.");
       }
 
-      const graph = graphRef.current ?? createGraph(volumeRef.current);
-      graphRef.current = graph;
       let decoded: AudioBuffer;
       try {
-        decoded = await graph.context.decodeAudioData(bytes);
+        decoded = await decodeWavAudio(bytes);
       } catch {
         throw new Error("This WAV could not be decoded. Try a PCM or IEEE-float WAV file.");
       }
@@ -170,12 +177,6 @@ export default function useWavAudio() {
         throw new Error("This WAV does not contain any playable audio.");
       }
 
-      graph.splitter.disconnect();
-      for (let channel = 0; channel < 2; channel += 1) {
-        const sourceChannel = decoded.numberOfChannels === 1 ? 0 : channel;
-        graph.splitter.connect(graph.vu[channel], sourceChannel);
-        graph.splitter.connect(graph.fft[channel], sourceChannel);
-      }
       bufferRef.current = decoded;
       setFile({
         name,
@@ -216,55 +217,6 @@ export default function useWavAudio() {
     [loadWav],
   );
 
-  const play = useCallback(async () => {
-    const graph = graphRef.current;
-    const buffer = bufferRef.current;
-    if (!graph || !buffer || playingRef.current) return;
-    const version = ++playVersionRef.current;
-    setStarting(true);
-    setError("");
-
-    try {
-      await graph.context.resume();
-      if (
-        disposedRef.current || version !== playVersionRef.current ||
-        buffer !== bufferRef.current
-      ) return;
-
-      if (offsetRef.current >= buffer.duration) offsetRef.current = 0;
-      const source = graph.context.createBufferSource();
-      source.buffer = buffer;
-      const gate = graph.context.createGain();
-      gate.gain.setValueAtTime(0, graph.context.currentTime);
-      gate.gain.setTargetAtTime(1, graph.context.currentTime, 0.004);
-      source.connect(gate);
-      gate.connect(graph.output);
-      const voice = { source, gate };
-      voiceRef.current = voice;
-      source.onended = () => {
-        source.disconnect();
-        gate.disconnect();
-        if (disposedRef.current || voiceRef.current !== voice) return;
-        voiceRef.current = null;
-        playingRef.current = false;
-        offsetRef.current = buffer.duration;
-        setFrame((previous) => ({ ...previous, position: buffer.duration }));
-        setStatus("ended");
-      };
-      startedAtRef.current = graph.context.currentTime;
-      source.start(0, offsetRef.current);
-      playingRef.current = true;
-      setStatus("playing");
-    } catch {
-      if (disposedRef.current || version !== playVersionRef.current) return;
-      stopVoice();
-      setError("Playback could not start. Press Play to try again.");
-      setStatus("paused");
-    } finally {
-      if (!disposedRef.current && version === playVersionRef.current) setStarting(false);
-    }
-  }, [stopVoice]);
-
   const pause = useCallback(() => {
     playVersionRef.current += 1;
     const graph = graphRef.current;
@@ -278,6 +230,83 @@ export default function useWavAudio() {
     setStarting(false);
     setStatus(bufferRef.current ? "paused" : "empty");
   }, [stopVoice]);
+
+  const play = useCallback(async () => {
+    const buffer = bufferRef.current;
+    if (disposedRef.current || !buffer || voiceRef.current || playingRef.current) return;
+    const version = ++playVersionRef.current;
+    setStarting(true);
+    setError("");
+
+    let releaseSession: (() => void) | undefined;
+    try {
+      releaseSession = claimPlaybackSession();
+      const existing = graphRef.current;
+      // Live output is created in the Play tap, never after an asynchronous download.
+      const graph = existing && existing.context.state !== "closed"
+        ? existing : createGraph(volumeRef.current);
+      graphRef.current = graph;
+      graph.context.onstatechange = () => {
+        if (!disposedRef.current && graphRef.current === graph &&
+            playingRef.current && graph.context.state !== "running") pause();
+      };
+      graph.splitter.disconnect();
+      for (let channel = 0; channel < 2; channel += 1) {
+        const sourceChannel = buffer.numberOfChannels === 1 ? 0 : channel;
+        graph.splitter.connect(graph.vu[channel], sourceChannel);
+        graph.splitter.connect(graph.fft[channel], sourceChannel);
+      }
+
+      if (offsetRef.current >= buffer.duration) offsetRef.current = 0;
+      const source = graph.context.createBufferSource();
+      source.buffer = buffer;
+      const gate = graph.context.createGain();
+      gate.gain.setValueAtTime(0, graph.context.currentTime);
+      gate.gain.setTargetAtTime(1, graph.context.currentTime, 0.004);
+      source.connect(gate);
+      gate.connect(graph.output);
+      const voice = { source, gate, releaseSession };
+      voiceRef.current = voice;
+      source.onended = () => {
+        source.disconnect();
+        gate.disconnect();
+        voice.releaseSession();
+        if (disposedRef.current || voiceRef.current !== voice) return;
+        voiceRef.current = null;
+        playingRef.current = false;
+        offsetRef.current = buffer.duration;
+        setFrame((previous) => ({ ...previous, position: buffer.duration }));
+        setStatus("ended");
+      };
+      startedAtRef.current = graph.context.currentTime;
+      // Schedule and resume in the same tap, before crossing an await boundary.
+      source.start(0, offsetRef.current);
+      await resumeForPlayback(graph.context);
+      if (
+        disposedRef.current || version !== playVersionRef.current ||
+        buffer !== bufferRef.current || voiceRef.current !== voice
+      ) return;
+      playingRef.current = true;
+      setStatus("playing");
+    } catch (cause) {
+      if (disposedRef.current || version !== playVersionRef.current) return;
+      stopVoice();
+      // Some iOS contexts stay suspended permanently. Retry with fresh output on
+      // the next tap; the decoded buffer remains available independently.
+      const failedGraph = graphRef.current;
+      graphRef.current = null;
+      if (failedGraph) {
+        failedGraph.context.onstatechange = null;
+        void failedGraph.context.close().catch(() => {});
+      }
+      releaseSession?.();
+      setError(cause instanceof Error && cause.message.startsWith("Audio is paused")
+        ? cause.message : "Playback could not start. Press Play to try again.");
+      setStatus("paused");
+    } finally {
+      if (!disposedRef.current && version === playVersionRef.current) setStarting(false);
+    }
+  }, [pause, stopVoice]);
 
   function setVolume(value: number) {
     setVolumeState(value);
@@ -369,12 +398,16 @@ export default function useWavAudio() {
         voice.source.stop();
         voice.source.disconnect();
         voice.gate.disconnect();
+        voice.releaseSession();
       }
       voiceRef.current = null;
       playingRef.current = false;
       const graph = graphRef.current;
       graphRef.current = null;
-      if (graph) void graph.context.close().catch(() => {});
+      if (graph) {
+        graph.context.onstatechange = null;
+        void graph.context.close().catch(() => {});
+      }
     };
   }, []);
 
