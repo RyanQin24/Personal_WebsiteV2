@@ -1,18 +1,21 @@
 .navigation {
+  /* Mobile: one value for screen-edge insets and the gaps between link labels. */
+  --mobile-nav-spacing: 28px;
   position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin: 24px 0 32px;
+  gap: 4px;
+  /* Container already provides 24px of horizontal padding on mobile. */
+  margin: 24px calc(var(--mobile-nav-spacing) - 24px) 32px;
 }
 
 .primaryLinks {
   display: flex;
-  flex: 1;
+  flex: 0 0 auto;
   min-width: 0;
   align-items: center;
-  justify-content: space-between;
-  gap: 3px;
+  justify-content: flex-start;
+  gap: var(--mobile-nav-spacing);
 }
 
 .primaryItem {
@@ -25,13 +28,14 @@
   min-width: 0;
   min-height: 44px;
   height: auto;
-  padding-inline: 2px;
-  font-size: 0.8125rem;
+  padding-inline: 0;
+  /* Fit fixed gaps on narrow phones, growing to the usual 14px by 360px wide. */
+  font-size: clamp(0.6875rem, calc(7.5vw - 13px), 0.875rem);
 }
 
 .moreToggle {
   flex-shrink: 0;
-  width: 32px;
+  width: 24px;
   height: 44px;
   cursor: pointer;
   color: hsl(var(--muted-foreground));
@@ -85,24 +89,20 @@
   justify-content: flex-start;
   flex-shrink: 0;
   align-self: center;
+  margin-left: auto;
+  /* Centered 16px icon in a 32px button: align the visible icon to the inset. */
+  margin-right: -8px;
 }
 
 .themeToggle > button {
+  position: relative;
   width: 32px;
   height: 44px;
 }
 
-/* Give wider phones a little more room while keeping all controls on one line. */
-@media (min-width: 360px) {
-  .primaryItem > a {
-    padding-inline: 4px;
-    font-size: 0.875rem;
-  }
-
-  .moreToggle,
-  .themeToggle > button {
-    width: 36px;
-  }
+.themeToggle svg {
+  width: 16px;
+  height: 16px;
 }
 
 /* Match the site's desktop breakpoint and keep the theme switch at the right. */
@@ -122,6 +122,7 @@
     min-width: 44px;
     min-height: 36px;
     padding-inline: 8px;
+    font-size: 0.875rem;
   }
 
   .moreToggle {
@@ -152,6 +153,7 @@
   .themeToggle {
     align-self: center;
     margin-left: auto;
+    margin-right: 0;
   }
 
   .themeToggle > button {
