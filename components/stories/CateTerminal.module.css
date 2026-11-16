@@ -121,6 +121,10 @@
   overflow-wrap: anywhere;
 }
 
+.commandResponse {
+  color: inherit;
+}
+
 .commandError {
   color: #ff6b6b;
 }

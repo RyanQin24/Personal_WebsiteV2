@@ -16,10 +16,12 @@ const commandError =
 
 function getCommandResponse(command: string) {
   const name = command.trim().toLowerCase();
+  const isKnownCommand = Object.hasOwn(commandResponses, name);
 
-  return Object.hasOwn(commandResponses, name)
-    ? commandResponses[name]
-    : commandError;
+  return {
+    text: isKnownCommand ? commandResponses[name] : commandError,
+    isError: !isKnownCommand,
+  };
 }
 
 export default function TerminalPrompt() {
@@ -52,15 +54,27 @@ export default function TerminalPrompt() {
         aria-live="polite"
         aria-relevant="additions"
       >
-        {history.map((entry, index) => (
-          <div key={index}>
-            <p className={styles.commandEcho}>
-              <span className={styles.promptUser}>cate@cateos</span>
-              <span className={styles.promptPath}>:~$</span> {entry}
-            </p>
-            <p className={styles.commandError}>{getCommandResponse(entry)}</p>
-          </div>
-        ))}
+        {history.map((entry, index) => {
+          const response = getCommandResponse(entry);
+
+          return (
+            <div key={index}>
+              <p className={styles.commandEcho}>
+                <span className={styles.promptUser}>cate@cateos</span>
+                <span className={styles.promptPath}>:~$</span> {entry}
+              </p>
+              <p
+                className={
+                  response.isError
+                    ? `${styles.commandResponse} ${styles.commandError}`
+                    : styles.commandResponse
+                }
+              >
+                {response.text}
+              </p>
+            </div>
+          );
+        })}
       </div>
 
       <form
