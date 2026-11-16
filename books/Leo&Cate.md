@@ -14,8 +14,8 @@ tags: ["story", "Leo & Cate", "CateOS", "cyberpunk"]
 ---
 
 Initializing Cate BIOS...
-Chipset: Cate ASIC [Always Ready]
 Checking system architecture...
+Chipset: Cate ASIC [READY]
 CPU: 4x AMD EPYC Core Arrays [STABLE]
 ACCELERATORS: 4x AMD MI Instinct [READY]
 FPGA: AMD Xilinx UltraScale+ [ACTIVE]
