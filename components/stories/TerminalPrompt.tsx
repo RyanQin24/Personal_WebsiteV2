@@ -5,7 +5,10 @@ import styles from "./CateTerminal.module.css";
 
 // Add commands and their responses here. Use lowercase command names.
 const commandResponses: Record<string, string> = {
-  help: "Appropriate Commands: \n - help: Displays this help message.\n AUTHOR Commands \n - about: Displays information about the author.\n - skills: Displays a list of skills and technologies.\n - contact: Displays contact information. \n Entertainment Commands \n - Leo: Displays how Leo hits on her Fiancé.",
+  help: "Appropriate Commands: \n - help: Displays this help message.\n AUTHOR Commands \n - about: Displays information about the author.\n - contact: Displays contact information. \n Entertainment Commands \n - leo: Displays how Leo hits on her Fiancé and how Cate Responds.",
+  about: "Author's Name: Ryan Qin \n Author's Background: Power Electronics, High Speed I/O, Embedded systems \n Author's E-Passion: Power and RF electronics Author's Sub-Passion: RC Cars, Country Music, Outdoor Activities, and Graphics Design",
+  contact: "Email: ryanqin@example.com \n LinkedIn: linkedin.com/in/ryanqin \n GitHub: github.com/ryanqin",
+  leo: "Leo: Hey Babe, those PLLs look stunning! I'd lovve to ride on the smooth clock edges. \n Cate: Leo, Stop! Your gonna make my CPUs melt. \n Leo: I can't help it. I'm feeling in the mood to probe the phy with a VNA. \n Cate: Leo, you can't say that to a girl. Especially not over the terminal",
 };
 
 const commandError =
@@ -13,12 +16,10 @@ const commandError =
 
 function getCommandResponse(command: string) {
   const name = command.trim().toLowerCase();
-  const isKnownCommand = Object.hasOwn(commandResponses, name);
 
-  return {
-    text: isKnownCommand ? commandResponses[name] : commandError,
-    isError: !isKnownCommand,
-  };
+  return Object.hasOwn(commandResponses, name)
+    ? commandResponses[name]
+    : commandError;
 }
 
 export default function TerminalPrompt() {
@@ -51,27 +52,15 @@ export default function TerminalPrompt() {
         aria-live="polite"
         aria-relevant="additions"
       >
-        {history.map((entry, index) => {
-          const response = getCommandResponse(entry);
-
-          return (
-            <div key={index}>
-              <p className={styles.commandEcho}>
-                <span className={styles.promptUser}>cate@cateos</span>
-                <span className={styles.promptPath}>:~$</span> {entry}
-              </p>
-              <p
-                className={
-                  response.isError
-                    ? `${styles.commandResponse} ${styles.commandError}`
-                    : styles.commandResponse
-                }
-              >
-                {response.text}
-              </p>
-            </div>
-          );
-        })}
+        {history.map((entry, index) => (
+          <div key={index}>
+            <p className={styles.commandEcho}>
+              <span className={styles.promptUser}>cate@cateos</span>
+              <span className={styles.promptPath}>:~$</span> {entry}
+            </p>
+            <p className={styles.commandError}>{getCommandResponse(entry)}</p>
+          </div>
+        ))}
       </div>
 
       <form
