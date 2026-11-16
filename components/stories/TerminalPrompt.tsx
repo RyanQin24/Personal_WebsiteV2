@@ -3,8 +3,21 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import styles from "./CateTerminal.module.css";
 
+// Add commands and their responses here. Use lowercase command names.
+const commandResponses: Record<string, string> = {
+  help: "Appropriate Commands: \n - help: Displays this help message.\n AUTHOR Commands \n - about: Displays information about the author.\n - skills: Displays a list of skills and technologies.\n - contact: Displays contact information. \n Entertainment Commands \n - Leo: Displays how Leo hits on her Fiancé.",
+};
+
 const commandError =
-  "Error: Resource deadlock from Leo's connection.\nTTY reserved for Leo.\nMessage from Leo: Story is in progress. Do not interrupt my gf.";
+  "Error: Invalid or forbiddden command.\n Forbidden command exception count: 0.\n Warning:Subsequent attempts will result in lethal force.";
+
+function getCommandResponse(command: string) {
+  const name = command.trim().toLowerCase();
+
+  return Object.hasOwn(commandResponses, name)
+    ? commandResponses[name]
+    : commandError;
+}
 
 export default function TerminalPrompt() {
   const [command, setCommand] = useState("");
@@ -42,7 +55,7 @@ export default function TerminalPrompt() {
               <span className={styles.promptUser}>cate@cateos</span>
               <span className={styles.promptPath}>:~$</span> {entry}
             </p>
-            <p className={styles.commandError}>{commandError}</p>
+            <p className={styles.commandError}>{getCommandResponse(entry)}</p>
           </div>
         ))}
       </div>
