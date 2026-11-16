@@ -14,6 +14,7 @@ tags: ["story", "Leo & Cate", "CateOS", "cyberpunk"]
 ---
 
 Initializing Cate BIOS...
+Chipset: Cate ASIC [Always Ready]
 Checking system architecture...
 CPU: 4x AMD EPYC Core Arrays [STABLE]
 ACCELERATORS: 4x AMD MI Instinct [READY]
@@ -27,7 +28,7 @@ Filesystem Detected: CateFS (Proprietary Non-ABI)
 
 [CORE OPERATING SYSTEM]
 Loading CateOS...
-Software Stack: "Build: Leo's Cyber G(f)"
+Software Stack: Leo's Fiancé
 System Version: Cyber Girl x Leo v1.1.0
 
 --------------------------------------------------------------------
